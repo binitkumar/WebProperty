@@ -47,7 +47,7 @@
         if( property_count > presentMarkers.length ){
 	  //map = L.map('map', { zoom: 13, minZoom: 11, maxBounds: bounds, layers: []});
 
-          markers = L.markerClusterGroup({});
+          markers = L.markerClusterGroup({ zoomToBoundsOnClick: false});
 
           for (var i = 0; i < addressPoints.length; i++) {
             var a = addressPoints[i];
@@ -135,6 +135,7 @@
           map.fitBounds(markers.getBounds());
 
           markers.on('clusterclick', function(a){
+
             childMarkers = a.layer.getAllChildMarkers() ;
 
             side_bar_html = "";
@@ -189,7 +190,7 @@
                 side_bar_html += "   </div>"
                 side_bar_html += " <button class='btn btn-warning contact' onclick=\"return invite_user("+ a.id +", '"+ a.title +"');\" id='contact-"+ a.id +"'>Contact Us</button>"
                 side_bar_html += " </div>"
-                side_bar_html += "</div>"
+                side_bar_html += "</div>"                
             }
             $("#side_bar").html(side_bar_html); 
             $(".mini-slides").slidesjs({
